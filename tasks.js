@@ -40,6 +40,10 @@ function onDataReceived(text) {
   else if(text === 'hello\n'){
     hello();
   }
+  else if (text=='help\n'){
+      console.log("quit or exit : to quit outside the program and stop it \n" +"hello: to recive you a message hello!")
+
+  }
   else{
     unknownCommand(text);
   }
