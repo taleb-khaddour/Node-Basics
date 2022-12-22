@@ -92,9 +92,14 @@ function quit() {
   process.exit()
 }
 //liste function
-function Liste(){
 let listy=["1- give us value;" , "2-you will recive the answer","3-you can put help code"];
+function Liste(){
+if(listy.length===0){
+  console.log("error not task to do ");
+}
+
 for (let i =0 ;i<listy.length;i++){
+
  console.log(listy[i]) ;
 }
 
