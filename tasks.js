@@ -67,7 +67,7 @@ function hello(data) {
   const arry = data.split(' ')
   if (arry[0] === 'hello') {
     const secondword = arry.slice(1).join(' ');
-    console.log('hello ' + secondword + '!') 
+    console.log('hello'+secondword +'!') 
 }
 }
 /**
@@ -84,7 +84,8 @@ function quit() {
 function help() {
   console.log(
     'quit or exit : to quit outside the program and stop it \n' +
-      'hello: to recive you a message hello!',
+      'hello: to recive you a message hello!\n',
+      'hello +word : give you hello word!' 
   )
 }
 
