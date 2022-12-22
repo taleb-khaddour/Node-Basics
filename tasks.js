@@ -50,8 +50,10 @@ function onDataReceived(text) {
     help()
    }  else if (text==='list\n'){
       Liste();
-   
-  }else {
+  }else if (text.split(" ")[0] === "add") {
+    addList(text);
+  }
+  else {
     unknownCommand(text)
   }
 }
@@ -80,8 +82,8 @@ function hello(data) {
   if (arry[0] === 'hello') {
     const secondword = arry.slice(1).join(' ');
     console.log('hello'+secondword +'!') 
-}
-}
+}}
+
 /**
  * Exits the application
  *
@@ -92,7 +94,17 @@ function quit() {
   process.exit()
 }
 //liste function
-let listy=["1- give us value;" , "2-you will recive the answer","3-you can put help code"];
+let listy=[];
+
+// add list
+function addList(data) {
+  data = data.replace('\n', '').trim()
+  const arry = data.split(' ')
+  if (arry[0] === 'add') {
+    const secondword = arry.slice(1).join(' ');
+    listy.push(secondword);
+}}
+
 function Liste(){
 if(listy.length===0){
   console.log("error not task to do ");
@@ -100,7 +112,7 @@ if(listy.length===0){
 
 for (let i =0 ;i<listy.length;i++){
 
- console.log(listy[i]) ;
+ console.log(`${i+1}- ${listy[i]}`) ;
 }
 
 
@@ -113,7 +125,7 @@ function help() {
       'hello: to recive you a message hello!\n',
       'hello + word : give you hello word!' 
   )
-}
+  }
 
 // The following line starts the application
 startApp('taleb khaddour')
