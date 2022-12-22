@@ -33,6 +33,7 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
 function onDataReceived(text) {
   if (text === 'quit\n' || text=='exit\n') {
     quit();
@@ -41,8 +42,7 @@ function onDataReceived(text) {
     hello();
   }
   else if (text=='help\n'){
-      console.log("quit or exit : to quit outside the program and stop it \n" +"hello: to recive you a message hello!")
-
+        help();
   }
   else{
     unknownCommand(text);
@@ -80,6 +80,14 @@ function hello(){
 function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
+}
+
+
+//List all the possible commnds
+function help(){
+  console.log("quit or exit : to quit outside the program and stop it \n" 
+  +"hello: to recive you a message hello!")
+  
 }
 
 // The following line starts the application
