@@ -67,7 +67,7 @@ function hello(data) {
   const arry = data.split(' ')
   if (arry[0] === 'hello') {
     const secondword = arry.slice(1).join(' ');
-    console.log('hello ' + secondword + '!')
+    console.log('hello ' + secondword + '!') 
 }
 }
 /**
