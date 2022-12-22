@@ -8,6 +8,15 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+
+
+
+
+
+
+
+
 function startApp(name) {
   process.stdin.resume()
   process.stdin.setEncoding('utf8')
@@ -39,7 +48,10 @@ function onDataReceived(text) {
     hello(text)
   } else if (text === 'help\n') {
     help()
-  } else {
+   }  else if (text==='list\n'){
+      Liste();
+   
+  }else {
     unknownCommand(text)
   }
 }
@@ -79,13 +91,22 @@ function quit() {
   console.log('Quitting now, goodbye!')
   process.exit()
 }
+//liste function
+function Liste(){
+let listy=["1- give us value;" , "2-you will recive the answer","3-you can put help code"];
+for (let i =0 ;i<listy.length;i++){
+ console.log(listy[i]) ;
+}
+
+
+}
 
 //List all the possible commnds
 function help() {
   console.log(
     'quit or exit : to quit outside the program and stop it \n' +
       'hello: to recive you a message hello!\n',
-      'hello +word : give you hello word!' 
+      'hello + word : give you hello word!' 
   )
 }
 
