@@ -159,7 +159,11 @@ function help() {
   console.log(
     'quit or exit : to quit outside the program and stop it \n' +
       'hello: to recive you a message hello!\n',
-      'hello + word : give you hello word!' 
+      'hello + word : give you hello word!\n',
+      'list : that give you list of task \n',
+       'add :add to the list at last\n',
+       'remove : remove the last element in list\n',
+       'remove +number :remove the elemet that number is for example 1 you remove the first list \n'
   )
   }
 
