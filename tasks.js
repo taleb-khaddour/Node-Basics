@@ -54,15 +54,16 @@ function onDataReceived(text) {
     addList(text);
   }
   else if (text.split(" ")[0] === "remove"){
-    if (listy.length==0){
-      console.log("list is empty");}
-      else{
+   
     remove(text);
-      }
+      
 
   }
   else if(text === 'remove\n'){
-    listy.splice(listy.length-1);
+    if (listy.length==0){
+      console.log("list is empty");}
+      else{
+    listy.splice(listy.length-1);}
   }
   else {
     unknownCommand(text)
@@ -131,24 +132,17 @@ function remove(data){
   const arry = data.split(' ')
   if (arry[0] === 'remove') {
     const secondword = arry.slice(1).join(' ');
-     if (listy.length==0){
-      console.log("list is empty");
-     }else{
-        if((typeof(secondword))!="integer"){
-         
-          console.log("errore to put");
-          
-        }
-
-        
-        else{
+    if (parseInt(secondword)>listy.length){
+      console.log("is greater then list size");
+    }else{
            listy.splice(secondword-1,1);
            console.log("remove is done ");
-        }
+       
 
-      }}
+      }}}
 
-}  
+
+
 
 
 
