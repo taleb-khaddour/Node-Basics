@@ -25,6 +25,8 @@ function startApp(name) {
   console.log('--------------------')
 }
 
+let databaseName = process.argv[2]
+databaseName == undefined ? databaseName = "database.json" : null;
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -40,9 +42,57 @@ function startApp(name) {
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+const fs = require('fs');
+
+
+
+function saveData() {
+  let cleanedTasksList =listy.map(e => {
+    return e.replace("- [ ] ", "")
+  })
+  let jsonData = JSON.stringify(cleanedTasksList)
+
+  try {
+    fs.writeFileSync(databaseName, jsonData, error => {
+      if (error) throw error;
+      console.log("data was saved")
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+// Load data on start
+function readData(){
+  fs.readFile(databaseName, "utf-8", (error, data) => {
+    try {
+      data = JSON.parse(data)
+     listy =  data.map(e => {
+      return "- [ ] " + e; 
+      })
+    } catch (error) {
+      if(error == "TypeError: Cannot read properties of null (reading 'map')") {
+        return
+      }
+      if(error.code === "ENOENT") {
+        return console.log("Database not found!")
+      }
+      if(error.toString().startsWith("SyntaxError")) {
+        return
+      }
+      console.log(error)
+    }
+  })
+}
+
+
+
 
 function onDataReceived(text) {
   if (text === 'quit\n' || text ==='exit\n') {
+    saveData();
     quit()
   } else if (text === 'hello\n'  || text.split(" ")[0] === "hello") {
     hello(text)
@@ -149,6 +199,7 @@ function hello(data) {
  */
 function quit() {
   console.log('Quitting now, goodbye!')
+  
   process.exit()
 }
 //liste function
