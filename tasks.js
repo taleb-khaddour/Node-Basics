@@ -65,12 +65,42 @@ function onDataReceived(text) {
       else{
     listy.splice(listy.length-1);}
   }
+  else if (text == "edit\n"){
+    console.log("errore ")
+  }
+  else if(text.split(" ")[0] === "edit"){
+    edit(text);
+  }
   else {
     unknownCommand(text)
   }
 }
 
- 
+ //edit function
+ function edit(data){
+  data = data.replace('\n', '').trim()
+  const arry = data.split(' ');
+  if (arry[0] === 'edit') {
+  const secondword = arry.slice(1,2).join(' ');
+  let pars = parseInt(secondword);
+  if(arry.length>2){
+    const thirdword = arry.slice(2).join(' ');
+    listy[pars-1]=thirdword;
+
+  }else if (arry.length=2){
+  
+  listy.splice(listy.length-1);
+  
+  listy.push(secondword);
+  // let last = listy.pop();
+  // listy.push(last);
+
+  }
+else{
+  console.log("error")
+}}
+
+ }
 
 /**
  * prints "unknown command"
