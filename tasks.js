@@ -61,7 +61,7 @@ function onDataReceived(text) {
   }
   else if(text === 'remove\n'){
     if (listy.length==0){
-      console.log("list is empty");}
+      console.log("list is empty ");}
       else{
     listy.splice(listy.length-1);}
   }
