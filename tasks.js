@@ -230,7 +230,9 @@ function help() {
       'list : that give you list of task \n',
        'add :add to the list at last\n',
        'remove : remove the last element in list\n',
-       'remove +number :remove the elemet that number is for example 1 you remove the first list \n'
+       'remove +number :remove the elemet that number is for example 1 you remove the first list \n',
+       "check/uncheck +number: to check the task that we do\n",
+       "edit +number : to edit the list "
   )
   }
 
