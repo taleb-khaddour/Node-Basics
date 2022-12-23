@@ -47,7 +47,8 @@ function onDataReceived(text) {
   } else if (text === 'hello\n'  || text.split(" ")[0] === "hello") {
     hello(text)
   } else if (text === 'help\n') {
-    help()
+    help();
+    
    }  else if (text==='list\n'){
       Liste();
   }else if (text.split(" ")[0] === "add") {
@@ -71,6 +72,20 @@ function onDataReceived(text) {
   else if(text.split(" ")[0] === "edit"){
     edit(text);
   }
+  else if(text.startsWith("check")){
+    check(text);
+  }
+  else if (text == "check\n"){
+    console.log("errore");
+
+  }
+  else if(text.startsWith("uncheck")){
+    uncheck(text);
+  }
+  else if (text == "uncheck\n"){
+    console.log("errore");
+
+  }
   else {
     unknownCommand(text)
   }
@@ -83,24 +98,25 @@ function onDataReceived(text) {
   if (arry[0] === 'edit') {
   const secondword = arry.slice(1,2).join(' ');
   let pars = parseInt(secondword);
+  
+
   if(arry.length>2){
     const thirdword = arry.slice(2).join(' ');
+    if( isNaN(secondword)== false && secondword<=listy.length){
     listy[pars-1]=thirdword;
-
+    }else{console.log("errore return another time");}
   }else if (arry.length=2){
   
   listy.splice(listy.length-1);
+
   
   listy.push(secondword);
-  // let last = listy.pop();
-  // listy.push(last);
 
-  }
+  }}
 else{
   console.log("error")
 }}
-
- }
+ 
 
 /**
  * prints "unknown command"
@@ -136,7 +152,7 @@ function quit() {
   process.exit()
 }
 //liste function
-let listy=["taleb","khaddour","hassan"];
+let listy=["[ ]taleb","[✓]khaddour","[ ]hassan"];
 
 // add list
 function addList(data) {
@@ -144,7 +160,7 @@ function addList(data) {
   const arry = data.split(' ')
   if (arry[0] === 'add') {
     const secondword = arry.slice(1).join(' ');
-    listy.push(secondword);
+    listy.push(`[ ]${secondword}`);
 }}
 
 function Liste(){
@@ -154,8 +170,36 @@ if(listy.length===0){
 
 for (let i =0 ;i<listy.length;i++){
 
- console.log(`${i+1}- ${listy[i]}`) ;
+ console.log(`${i+1}-${listy[i]}`) ;
 }}
+
+//function check
+function check(data){
+  data = data.replace('check ','' ).trim()
+  index=data.split(" ")[0]-1
+  if(listy[index].indexOf("✓") === -1){
+  listy[index]=listy[index].replace(" ","✓")}else {
+    console.log("it's already checked !!");
+  }
+}
+function uncheck(data){
+  data = data.replace('uncheck ','' ).trim()
+  index=data.split(" ")[0]-1
+  if(listy[index].indexOf("✓") !== -1){
+    listy[index]=listy[index].replace("✓"," ");
+  }else {
+      console.log("it's already unchecked !!");
+
+  }
+  
+
+}
+
+
+
+
+
+
 function remove(data){
 
   data = data.replace('\n', '').trim()
@@ -174,8 +218,7 @@ function remove(data){
 
 
 
-
-
+     
 
 
 //List all the possible commnds
