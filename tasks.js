@@ -53,6 +53,17 @@ function onDataReceived(text) {
   }else if (text.split(" ")[0] === "add") {
     addList(text);
   }
+  else if (text.split(" ")[0] === "remove"){
+    if (listy.length==0){
+      console.log("list is empty");}
+      else{
+    remove(text);
+      }
+
+  }
+  else if(text === 'remove\n'){
+    listy.splice(listy.length-1);
+  }
   else {
     unknownCommand(text)
   }
@@ -94,7 +105,7 @@ function quit() {
   process.exit()
 }
 //liste function
-let listy=[];
+let listy=["taleb","khaddour","hassan"];
 
 // add list
 function addList(data) {
@@ -113,10 +124,35 @@ if(listy.length===0){
 for (let i =0 ;i<listy.length;i++){
 
  console.log(`${i+1}- ${listy[i]}`) ;
-}
+}}
+function remove(data){
+
+  data = data.replace('\n', '').trim()
+  const arry = data.split(' ')
+  if (arry[0] === 'remove') {
+    const secondword = arry.slice(1).join(' ');
+     if (listy.length==0){
+      console.log("list is empty");
+     }else{
+        if((typeof(secondword))!="integer"){
+         
+          console.log("errore to put");
+          
+        }
+
+        
+        else{
+           listy.splice(secondword-1,1);
+           console.log("remove is done ");
+        }
+
+      }}
+
+}  
 
 
-}
+
+
 
 //List all the possible commnds
 function help() {
